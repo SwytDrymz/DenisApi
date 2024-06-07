@@ -43,8 +43,12 @@ app.post('/email', (req, res) => {
     text: `Jméno a přijímení: ${name},\n Email: ${email}, \n Tel. číslo: ${mobile}, \n Klient chce pomoct s: ${option=="option3" ? additional: option}  ${message ? "\n Zpráva: " + message:""}`,
     category: "Integration Test",
   })
-  .then(console.log, console.error);
-})
+     .then(response => {
+      console.log("Email byl úspěšně odeslán:", response);
+    })
+    .catch(error => {
+      console.error("Chyba při odesílání e-mailu:", error);
+    });
 
 
 /*const PORT = 3000
