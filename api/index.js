@@ -49,7 +49,7 @@ app.post('/email', (req, res) => {
     .catch(error => {
       console.error("Chyba při odesílání e-mailu:", error);
     });
-
+})
 
 /*const PORT = 3000
 app.listen(PORT, () => {
