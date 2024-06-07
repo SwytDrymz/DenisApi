@@ -42,7 +42,7 @@ app.post('/email', (req, res) => {
     category: "Integration Test",
   })
   .then(console.log, console.error);
-  //res.status(200).json({ message: "Požadavek přijat. E-mail bude odeslán." });
+  res.status(200).json({ message: "Požadavek přijat. E-mail bude odeslán." });
 })
 
 
