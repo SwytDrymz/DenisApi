@@ -6,10 +6,13 @@ const { MailtrapClient } = require("mailtrap");
 
 const app = express()
 app.use(express.json())
-app.use(cors({
-  origin: 'https://denisvlcek.vercel.app' // Povolit požadavky pouze z vaší React aplikace
-}));
+const corsOptions = {
+  origin: 'https://denisvlcek.vercel.app', // Povolit požadavky pouze z vaší React aplikace
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+};
 
+app.use(cors(corsOptions));
 
 const TOKEN = "982281476ed85f01624c45b6b9423f48";
 const ENDPOINT = "https://send.api.mailtrap.io/";
