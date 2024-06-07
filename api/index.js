@@ -33,6 +33,8 @@ const recipients = [
 
 app.post('/email', (req, res) => {
     const {name, email, message, mobile, option, additional}  = req.body
+
+
     client
   .send({
     from: sender,
@@ -41,11 +43,15 @@ app.post('/email', (req, res) => {
     text: `Jméno a přijímení: ${name},\n Email: ${email}, \n Tel. číslo: ${mobile}, \n Klient chce pomoct s: ${option=="option3" ? additional: option}  ${message ? "\n Zpráva: " + message:""}`,
     category: "Integration Test",
   })
-  .then(console.log, console.error);
-  res.status(200).json({ message: "Požadavek přijat. E-mail bude odeslán." });
-})
-
-
+  .then(response => {
+    console.log("Email byl úspěšně odeslán:", response);
+    res.status(200).json({ success: true, message_ids: response.message_ids });
+  })
+  .catch(error => {
+    console.error("Chyba při odesílání e-mailu:", error);
+    res.status(500).json({ success: false, error: 'Chyba při odesílání e-mailu' });
+  });
+});
 /*const PORT = 3000
 app.listen(PORT, () => {
     console.log(`Server běží na portu ${PORT}`)
