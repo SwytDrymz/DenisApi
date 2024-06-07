@@ -42,7 +42,9 @@ app.post('/email', (req, res) => {
 })
 
 
-const PORT = 3000
+/*const PORT = 3000
 app.listen(PORT, () => {
     console.log(`Server běží na portu ${PORT}`)
-});
+}); */
+
+module.exports = app;
